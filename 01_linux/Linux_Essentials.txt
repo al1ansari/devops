@@ -1,0 +1,705 @@
+ Linux Essentials and Bash Shell Scripting for DevOps
+====================================================
+
+Instructor : Hyder Abbas
+
+Day 03 of Course - 17th Sep (Wednesday)
+============================================================================================================================================================================================================================================
+ 
+What is an Operating System (OS)?
+---------------------------------
+--> An Operating System (OS) is software that acts as a mediator between the user and the computer hardware.
+
+--> It allows users to interact with computers and run the programs/apps.
+
+--> Without an OS, we cannot use any computer system.
+
+--> It provides an environment (platform) for users to operate and manage hardware and software resources
+
+Types of Operating Systems in the market
+=========================================
+Common examples include:
+
+Windows
+
+Linux
+
+macOs
+
+Android
+
+iOS
+..
+..
+Windows operating system:
+========================
+-> Primarily a single-user OS
+
+-> Commercial OS - requires paid licenses
+
+-> Lower built-in security - anti-virus software is often necessary
+
+-> Best suited for personal or home use such as:
+
+ Playing Games
+ 
+ Watching Movies
+ 
+ Internet browsing
+
+ Storing files
+ 
+ Attending online classes
+
+Note : Windows is not recommended for enterprise-level operations like application deployment or server hosting
+
+======================
+Linux Operating System
+======================
+
+-> Free, Open source and community developed
+
+-> Supports multi-user environment
+
+-> Offers high security
+
+-> CLI-Based (Command Line Interface), though some distros have GUIs
+
+Highly recommended for:
+
+Servers
+
+Application Deployment
+
+Infrastructure Setup
+
+Note : 💡 In real-time IT environments, Linux is the OS of choice for infrastructure and DevOps operations.
+
+📜 History of Linux
+=======================
+Created by Linus Torvalds
+
+Initially used UNIX OS, but faced limitations and his feedback was not accepted
+
+He discovered Minix OS, which aligned more closely with his ideas
+
+Linus modified Minix and created Linux
+
+Name Origin:
+Lin(us) + Min(ux) = Linux
+
+Linux Distributions (Flavors)
+=============================
+
+After Linux was released as open source, many companies downloaded the source code and customized it to create their own versions, known as Linux Distributions.
+
+🔹 Popular Linux Distros:
+
+-> CentOS
+
+-> Ubuntu
+
+-> Amazon Linux
+
+-> Red Hat Enterprise Linux (RHEL)
+
+There are 200+ Linux Distributions available today
+
+
+✅ Summary
+What is an Operating System and why do we need it?
+
+Windows OS – GUI, single-user, commercial, for personal use
+
+Linux OS – CLI, multi-user, open source, secure, for enterprise use
+
+History of Linux – Linus Torvalds' journey from UNIX to Linux
+
+Linux Distributions – Various flavors developed from the base Linux kernel
+
+
+Topics to be Covered
+=======================
+File Based Operations
+Text Editors
+Text Filters
+Users Management
+File Permissions
+File Ownership
+Archieves 
+Networking
+sudoers file
+ssh_config
+static website hosting (httpd)
+package managers
+Linux architecture
+
+=============================================================================================================================================================================================================================================
+Day 04 - 18th Sep(Thursday)
+
+==> Create a free tie AWS account (Video is uploaded in course dashboard)
+
+Install Git bash
+ 
+https://git-scm.com/downloads
+
+Install Mobaxterm(Optional and only for windows)
+
+https://mobaxterm.mobatek.net/download-home-edition.html
+
+====================================================
+
+Linux File System
+==================
+=> Everything is represented as a file
+
+   -> Directory file (Folder) (starts with d)
+   -> Normal file/ordinary file (starts with -)
+   -> Link file (starts with l)
+
+
+Linux Commands
+==============
+
+$ clear --> To clear our screen
+
+$ mkdir telusko --> create a folder/directory named telusko
+
+$ cd telusko --> changing our current directory to telusko --> to move or go inside telusko directory
+
+$ cd .. --> to come out of the directory
+
+$ pwd --> To check our current directory/folder
+/home/ec2-user/telusko
+
+$ rmdir telusko --> it removes/deletes directory by name telusko (It must be an empty directory)
+
+$ rm -rf <directory-name>
+
+$ rm -rf finishers --> To delete/remove directory which is not empty (directory which has some files in it)
+
+
+---------------------------------------------------
+$ ls --> display files present in current working directory ( one beside the other)
+
+$ ls -l --> display files in current working directory in alphabetical order one below the other with file permissions info
+
+$ ls -lr --> display files in current working directory in reverse alphabetical order(z-a) one below the other with file permissions info
+
+$ ls -lt --> display files in current working directory with latest file create on top ( time based order )
+
+$ ls -ltr --> display files in current working directory with oldest file create on top ( time based order )
+
+------------------------------------------------
+
+$ rm <file-name> -> it will remove/delete file 
+
+$ rm alien.txt --> it will delete file named alien
+
+$ rm *.txt --> it will remove/delete all files with extension .txt
+
+$ rm a*.txt --> it will delete all files names starting with a and with .txt extension
+
+============================================================================================================================================================================================================================================
+Day 05 - 22 SEP (Monday)
+=================================
+
+mv : To Move and to Rename 
+
+$ mv <current-name> <new-name>  ==> Renaming the file
+ex: 
+
+$ mv linux.txt linux-shellscript.txt
+
+$ mv <current-locationfilename> <new-location> ==> Changing location
+ex:
+
+$mv docker.txt telusko  ==> It moved docker.txt from current directory to telusko directory
+ 
+=================================
+
+$ cat <file-name> ==> It will display data/content of the file
+
+$ cat aws.txt
+
+$ cat > <file-name>
+
+$ cat > terraform.txt  ==> New file by name terraform.txt will be created and we will get the option to enter data from terminal(ctrl+d) to come out of terminal editing 
+
+$ cat terraform.txt ==> display the content of terraform.txt file
+
+$ cat >> <file-name>
+
+$ cat >> terraform.txt ==> append/add data to existing file by name terraform.txt
+
+$ cat -n terraform.txt ==> It will display file content/data with numbering
+
+$ tac terraform.txt  ==> It will print/display content from bottom to top order
+
+$ rev terraform.txt ==> reverse each words of the line and display the content
+
+Note: here terraform.txt or Jenkins.txt all of these are just file name example it could be any file name
+
+===================================
+Copy data: cp
+===============
+$ cp <source-file> <destination-file>
+
+$ cp Jenkins.txt k8s.txt  ==> Jenkins file data will be added in k8s file (if there is content/ata in k8s file then it will be replaced by new content/data coming from Jenkins txt file)(Jenkins and k8s are just example file names)
+
+===============
+Copy multiple files data into another/one file
+===============
+
+$ cat <sourcefile1> <source file2> > <destination-filename>
+
+$  cat jenkins.txt k8s.txt > linux-shellscript.txt ==> Content of Jenkins.txt and k8s.txt file will be added in linux-shellscript.txt file
+
+===================
+
+$ cat <file-name>
+$ cat jenkins.txt ==> it will display entire content file
+
+$ head <file-name>
+$ head jenkins.txt ==> Prints/display first 10 lines of the file
+
+$ tail <file-name>
+$ tail jenkins.txt ==> Prints/display last/bottom 10 lines of the file
+
+$ head -n 4 jenkins.txt ==> Prints/display first 4 lines of the file
+
+$ tail -n 4 jenkins.txt ==> Prints/display last/bottom 4  lines of the file
+
+
+$ history     ==> It will display all the commands which we have run in this particular Linux vm
+    1  clear
+    2  mkdir telusko
+    3  touch linux.txt
+    4  touch aws.txt
+    5  touch docker.txt
+    6  ls
+    7  ls -l
+    8  mv linux.txt linux-shellscript.txt
+    9  ls -l
+   10  clear
+   11  ls -l
+   12  cd telusko
+   13  ls -l
+   14  cd ..
+   15  mv docker.txt telusko
+   16  ls -l
+   17  cd telusko
+   18  ld -l
+   19  clear
+   20  ls -l
+   21  cd ..
+   22  ls -l
+   23  pwd
+   24  mv aws.txt telusko
+   25  ls -l
+   26  clear
+   27  ls -l
+   28  touch k8s.txt
+   29  cat k8s.txt
+   30  ls -l
+   31  cat > jenkins.txt
+   32  ls -l
+   33  cat jenkins.txt
+   34  cat > terraform.txt
+   35  cat terraform.txt
+   36  cat >> terraform.txt
+   37  cat terraform.txt
+   38  clear
+   39  vi terraform.txt
+   40  clear
+   41  ls -l
+   42  cat -n jenkins.txt
+   43  tac jenkins.txt
+   44  rev jenkins.txt
+   45  clear
+   46  ls -l
+   47  cat k8s.txt
+   48  cat jenkins.txt
+   49  cp jenkins.txt k8s.txt
+   50  cat jenkins.txt
+   51  cat k8s.txt
+   52  cat terraform.txt
+   53  cp terraform.txt k8s.txt
+   54  cat k8s.txt
+   55  clear
+   56  ls -l
+   57  cat linux-shellscript.txt
+   58  cat jenkins.txt k8s.txt > linux-shellscript.txt
+   59  cat linux-shellscript.txt
+   60  clear
+   61  ls
+   62  cat jenkins.txt
+   63  head jenkins.txt
+   64  tail jenkins.txt
+   65  cat >> jenkins.txt
+   66  cat jenkins.txt
+   67  cat -n jenkins.txt
+   68  head jenkins.txt
+   69  tail jenkins.txt
+   70  clear
+   71  head -n 4 jenkins.txt
+   72  tail -n 4 jenkins.txt
+   73  clear
+   74  history
+
+=============================
+grep command
+============
+
+==> grep stands for Global Regular Expression Print
+
+==> It's a command-line utility in Linux used to search for patterns in text using regular expression. It prints the matching lines
+
+$ cat aws.txt
+
+AWS classes will be right after Linux and Bash shell scripting
+aws is important for devops and cloud
+AWS is very popular
+aws is easy to learn if you're implementing
+
+$ grep 'aws' aws.txt  ==> It will print/display the lines which has 'aws' in it by considering case sensitivity
+
+aws is important for devops and cloud
+aws is easy to learn if you're implementing
+
+$ grep -i 'aws' aws.txt  ==> It will print/display the lines which has 'aws' in it by ignoring case sensitivity
+
+AWS classes will be right after Linux and Bash shell scripting
+aws is important for devops and cloud
+AWS is very popular
+aws is easy to learn if you're implementing
+
+$ grep -n 'aws' aws.txt  ==> It will print/display line of file aws.txt which as 'aws' in it along side number
+
+2:aws is important for devops and cloud
+4:aws is easy to learn if you're implementing
+
+$ grep -n -i 'aws' aws.txt ==> It will print/display line of file aws.txt which as 'aws' in it along side number by ignoring case sensitivity
+
+1:AWS classes will be right after Linux and Bash shell scripting
+2:aws is important for devops and cloud
+3:AWS is very popular
+4:aws is easy to learn if you're implementing
+
+
+$ grep -i 'aws' *   ==> search for 'aws' keyword in all the file of pwd(present working directory)
+
+
+aws.txt:AWS classes will be right after Linux and Bash shell scripting
+aws.txt:aws is important for devops and cloud
+aws.txt:AWS is very popular
+aws.txt:aws is easy to learn if you're implementing
+jenkins.txt:aws
+jenkins.txt:aws is dominating
+k8s.txt:we will learn aws eks
+grep: telusko: Is a directory
+terraform.txt:aws infra provisioning we will do with terraform iac
+
+
+grep -i "warning" app.log
+🔹 Finds "Warning", "WARNING", "wArNiNg", etc., in app.log.
+
+Count the number of matches
+
+grep -c "Exception" error.log
+🔹 Outputs how many lines contain "Exception" in error.log.
+
+Show line numbers with matches
+
+grep -n "Database" db.log
+🔹 Shows lines with "Database" along with their line numbers.
+
+Search for an exact word match
+
+grep -w "fail" results.txt
+🔹 Matches only the word fail, not failed or failing.
+
+=============================================================================================================================================================================================================================================
+Day 06 - 23 SEP (Tuesday)
+===================================
+
+$ diff aws.txt jenkins.txt  ==> To See diff between these 2 files (aws.txt and Jenkins.txt are just file names)
+
+$ wc k8s.txt
+  4  22 128 k8s.txt
+
+4 -> number of lines
+22 -> number of words
+128 -> number of bytes/characters
+
+tac, cp ,mv , cat, tail, grep, wc, diff, head
+
+=====================
+Text Editors in Linux
+=====================
+
+==> vi (visual editor) ==> it is a default editor in Linux
+
+==> Using 'vi' command we can create new files and we can modify, add, update the existing file data.
+
+==> vi command have 3 modes
+1) command mode
+===============
+=> We can just open file and navigate pr see the content, we cannot edit or modify or add content in this mode
+
+$ vi <file-name>
+it could be existing file or a new file and extension could be anything (.txt, .yml, .tf , .py ......)
+
+$ vi alien.txt 
+if there is fine by name alien already exist then it will open that file or else it will create a new file
+
+2)Insert Mode
+==============
+=> To edit the file or to add the content into the file (press i in keyboard to get into insert mode)
+
+3) esc mode
+============
+=> to come out of the file or to exit the file (press esc in keyboard)
+:wq => To save changes we have made in the file and close file
+:q! => To close the file without saving the changes
+
+File creation in Linux
+========================
+touch --> To Create an empty file
+
+cat --> To create file with data without opening any editor ( cat can be used to view and for copy too please refer to notes above) cat > <filename>, cat >> <filename>, cat <filename> <filename> > <destinationfilename>
+
+cp --> Copy one file data into another file ( cp aws.txt devops.txt)
+
+vi --> create and open file for editing (vi f.txt)
+
+=========================
+Reading Data from a file 
+------------------------
+vi --> open the file and we could able to see and navigate over content in command mode
+
+cat --> print/display the file data from top to bottom as it is present in the file
+
+tac --> print/display the data from bottom to top 
+
+rev --> prints/display data in reverse order
+
+head --> prints/display first 10 lines of the file
+
+tail  -->  prints/display last 10 lines of the file
+
+============
+SED command
+============
+
+==> SED --> stream editor
+
+==> SED is used to process the data (substitute, delete, insert ,....)
+
+==> SED is very powerful command in Linux using which we can perform operations on the file without opening it
+
+$ sed 's/AWS/AZURE/' aws.txt  (aws.txt is just a file)
+Replace first occurrence of  AWS with AZURE in file without saving changes in the original file
+
+$ sed -i 's/AWS/AZURE/' aws.txt
+Replace first occurrence of  AWS with AZURE in file and save changes in the original file
+
+$ sed -i 's/AWS/AZURE/g' aws.txt
+Replace all occurrence of AWS with AZURE in file named aws.txt
+
+$ sed -i '5d' aws.txt
+Delete 5th line from file aws.txt
+
+$ sed -i '$d' aws.txt
+Delete last line from file aws.txt
+
+$ sed -i '/AWS/d' aws.txt
+Delete all lines from aws.txt file which has 'AWS' word in it
+
+$ sed -n '2,4p' aws.txt
+Print the data from line number 2 to 4 from a file aws.txt
+
+$ sed -i '5i\ ai making ppl to learn cloud' aws.txt
+Insert Data "ai making ppl to learn cloud" before 5th line in file named aws.txt and save the changes in it
+
+
+$ sed '5i\ ai making ppl to learn cloud' aws.txt
+Insert Data "ai making ppl to learn cloud" before 5th line in file named aws.txt and it doesn't change the original file
+
+
+$ sed -i '$a\I love or Hate Linux I must learn' aws.txt
+Add the data after the last line
+
+=============================================================================================================================================================================================================================================
+Day 07 - 24th SEP (Wednesday)
+==================================
+
+USER Accounts
+=============
+
+==> Linux is a multi user based OS
+==> One Linux machine we can create multiple user accounts and multiple users can perform multitasking
+
+'ec2-user' is a default user in Amazon Linux
+'ubuntu' is a default user in Ubuntu Linux
+
+--> Add new user
+$ sudo useradd Raj
+
+--> Add password for the new user
+$ sudo passwd Raj
+
+Changing password for user Raj.
+New password:
+BAD PASSWORD: The password fails the dictionary check - it is based on a dictionary word
+Retype new password:
+passwd: all authentication tokens updated successfully.
+
+
+--> display users created
+$ cat /etc/passwd
+
+
+--> Switch user
+$ sudo su Raj
+$ whoami
+Raj
+
+$ pwd
+/home/ec2-user
+
+$ cd ~
+
+$ pwd
+/home/Raj
+
+
+--> You need to be default ec2-user to make all these changes
+
+$ sudo su ec2-user
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+For security reasons, the password you type will not be visible.
+
+[sudo] password for Raj:
+Raj is not in the sudoers file.
+
+$ exit ==> to come back to default ec2-user
+
+--> Delete the user
+$ sudo userdel Raj
+
+--> Delete the user with home directory
+$ sudo userdel Raj --remove
+
+After Deleting user trying to switch to Raj
+$ sudo su Raj
+su: user Raj does not exist or the user entry does not contain all the required fields
+
+
+--> Changing user name
+
+$ sudo usermod -l <newname> <oldname>
+
+$ sudo usermod -l kalyan shreekant
+
+================
+USER Groups
+================
+
+==> A user group in Linux is a collection of user accounts that share the same permissions for accessing files, directories, or system resources.
+
+==> When we create user in Linux , for every user one group also be created with a given username
+
+To display user belong to which group
+
+$ id Suraj  
+uid=1003(Suraj) gid=1003(Suraj) groups=1003(Suraj)
+
+(Suraj is a new user account)
+
+==> Creating a new user group
+$ sudo groupadd <group-name>
+$ sudo groupadd telusko
+
+==> Adding user to a group
+
+$ sudo usermod -aG telusko Suraj  ==> adding Suraj to telusko user group
+
+==> Displays users in a group
+$ sudo lid -g telusko
+
+ Suraj(uid=1003)
+ Binzila(uid=1004)
+
+==> Display user belong to which group 
+
+ id Suraj
+uid=1003(Suraj) gid=1003(Suraj) groups=1003(Suraj),1005(telusko)
+
+==> Remove user from user group
+
+$ id Suraj
+uid=1003(Suraj) gid=1003(Suraj) groups=1003(Suraj),1005(telusko)
+
+$ sudo gpasswd -d Suraj telusko
+Removing user Suraj from group telusko
+
+$ id Suraj
+uid=1003(Suraj) gid=1003(Suraj) groups=1003(Suraj)
+
+
+===============
+sudoers file
+===============
+=> Very important file in Linux machine, with the help of this file we can control which user can run command as superuser
+
+Note: We must be very careful when we are working with sudoers file
+
+$ sudo cat /etc/sudoers
+Prints content of sudoers file
+
+$ sudo visudo
+
+## Allow root to run any commands anywhere
+root    ALL=(ALL)       ALL
+Suraj   ALL=(ALL)       ALL
+Binzila ALL=(ALL)       ALL
+
+ctrl+x+y --> enter
+
+To exit the sudoers file
+
+====================================
+Day 08 - 25th SEP (Thursday)
+====================================
+
+Multiple user
+File Permission
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

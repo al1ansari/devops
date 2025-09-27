@@ -1,0 +1,237 @@
+AI Powered DevOps with AWS - V2
+==============================
+
+Telusko
+
+Day 0 ==> 11th Sept 2025 (Thursday)
+=============================================================================================================================================================================================================================================
+
+Road Map
+Expectation
+Course Culture
+QA
+
+==============================================================
+4 months - weekday -- Mon-Tue-Wed-Thu (9:00pm to 10:30 pm IST)
+
+No pre-requisite
+
+Note : Every live class will be recorded and recordings will be available within 4-6 HOUR time after class
+
+==> private course community also would be created
+ 
+Live Classes
+============
+1->Fundamentals Before DevOps
+2->Linux Essentials and bash shell scripting
+3->Cloud Computing with AWS
+4->Tomcat
+5->Docker
+6->K8S (including monitoring and logging tools)
+7->SonarQube
+8->CICD == Jenkins
+Projects
+Prompt Engineering
+AI For Trouble shooting
+AI for DevOps
+
+pre recorded
+===========
+Git and GitHub
+Maven
+Terraform
+Ansible
+
+https://courses.telusko.com/learn/ai-powered-devops-with-aws-live-course-v2
+
+=============================================================================================================================================================================================================================================
+Day - 1 (15th Sep - Monday)
+============================
+Fundamentals Before DevOps 
+============================
+
+SDLC 
+
+Writing Code + Build and Deploying(Giving life to app)
+   ||                       ||
+Development Team    DevOps + Cloud
+
+Note : Refer board diagrams for fundamentals like processor, RAM, HDD attached in live class recordings
+=======================================================================================================
+
+==> DevOps main aim is to establish collaboration between development team and Operations Team 
+
+==> DevOps is a culture / practice in IT industry to simplify application delivery process to the client with high quality
+
+Development Team Roles
+=======================
+
+--> Requirement gathering --> Requirement Analysis --> Design --> Development(Coding) --> Unit Testing --> Code Integration
+
+--> Bug Fixing
+
+DevOps Team Roles
+=================
+
+==> Understanding Infrastructure requirement
+    -Network
+    -Storage
+    -Servers
+    -Security
+    -Backup
+
+==> Infrastructure Creation on Cloud (AWS) (Terraform - Infrastructure as Code)
+
+==> Configuration Management (Ansible)
+
+==> Working with Linux Machine(Servers)
+
+==> Working with Code Repositories (GitHub)
+
+==> Working with Docker (Simplify app execution - Containerization)
+
+==> Managing Containers with Kubernetes(K8S) (Orchestration)
+
+==> Automate Build and Deployment Process (CICD Pipelines - Jenkins)
+
+==> Infrastructure and App Monitoring
+
+Skills to suite this role
+===========================
+SDLC (Waterfall model, Agile and Scrum)
+Application Architecture
+Linux Essentials
+bash shell scripting
+Cloud (AWS)
+Terraform
+Ansible
+Maven
+Tomcat
+Docker
+K8S
+Helm
+Prometheus
+Grafana
+EFK/ELK
+CICD-Jenkins
+SonarQube
+Git and GitHub
+
+===========================
+Linux OS + Shell Scripting
+AWS Cloud
+DevOps Tools
+Projects
+=============================================================================================================================================================================================================================================
+Day 02 - 16th SEP (Tuesday)
+=============================================================================================================================================================================================================================================
+Monolithic app 
+Microservice app
+SDLC
+Waterfall
+Agile Scrum
+
+Monolithic architecture vs Microservice Architecture => app dev
+===================================================
+
+Note : refer to the board work diagram attached in live class recordings 
+
+==> Monolithic architecture : If we develop all functionalities/services as a single app
+
+Limitation/Drawbacks 
+--------------------
+=> Everything in one place
+=> Single Point of failure
+=> Burden on Server
+=> Maintenance will be difficult
+=> Re-Deploy Entire app which increase down time 
+
+==> Microservice architecture : Small services/api which are independently deployed
+    (Developing app as multiple services/apis depends on funcationalities)
+
+Benefits
+--------
+=> Loose coupled
+=> High availability
+=> Tech independence
+=> If there is a problem in one feature/api/microservice the other services need not to be redeployed (Hence less down time)
+
+===============================================================
+SDLC ==> Software Development Life Cycle
+========================================
+
+==> Requirement Gathering
+==> Requirement Analysis
+==> Design / Planning
+==> Development (coding)
+==> Testing
+==> Deployment/ Delivery
+==> Maintenance --> support 
+
+=========================================
+
+1) Waterfall Model (outdated)
+   -> Requirement are fixed
+   -> Duration is fixed
+   -> Budget fixed
+   -> Client will be able to see project at the end (Client involvement will not be there)
+   -> No Agility ( no flexibility)
+   -> Longer delivery time
+
+2) Agile Methodology (trending)
+  
+   -> Planning + Development + Testing + Deployment is a continuous process
+   -> Iterative approach
+
+   -> Project requirement is not fixed
+   -> Project is not fixed
+   -> Project duration is not fixed
+   -> Project will be developed in multiple sprints
+   -> Client involvement will be there in every sprint  
+
+=============================================================================================================================================================================================================================================
+Day 03 - 17th SEP (Wednesday)
+
+   => Scrum framework to implement agile methodology
+   
+   -> Backlog -> The tasks which to be completed 
+   -> scrum -> Daily status call - scrum call
+   -> sprint -> 2- 4 week of period in which priority task are planned for delivery/completion
+   -> Retro -> Review meeting on the sprint
+       
+
+DevOps 
+========
+
+DevOps is a culture / practice in IT industry to simplify application delivery process to the client with high quality
+
+Development + Operation ==> CICD == High quality delivery of project
+
+
+7'c, DevOps
+============
+-> Continuous Planning
+-> Continuous Development
+-> Continuous Integration
+-> Continuous Testing
+-> Continuous Delivery
+-> Continuous Monitoring
+-> Continuous Feedback
+
+=============================================================================================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
