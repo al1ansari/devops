@@ -95,11 +95,11 @@ After Linux was released as open source, many companies downloaded the source co
 
 🔹 Popular Linux Distros:
 
--> CentOS
+-> CentOS(dnf/yum-package manager)
 
--> Ubuntu
+-> Ubuntu(apt-package manager)
 
--> Amazon Linux
+-> Amazon Linux(dnf/yum-package manager)
 
 -> Red Hat Enterprise Linux (RHEL)
 
@@ -445,13 +445,13 @@ Text Editors in Linux
 ==> vi command have 3 modes
 1) command mode
 ===============
-=> We can just open file and navigate pr see the content, we cannot edit or modify or add content in this mode
+=> We can just open file and navigate or see the content, we cannot edit or modify or add content in this mode
 
 $ vi <file-name>
 it could be existing file or a new file and extension could be anything (.txt, .yml, .tf , .py ......)
 
 $ vi alien.txt 
-if there is fine by name alien already exist then it will open that file or else it will create a new file
+if there is file by name alien already exist then it will open that file or else it will create a new file
 
 2)Insert Mode
 ==============
