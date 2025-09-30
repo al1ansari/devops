@@ -676,13 +676,238 @@ ctrl+x+y --> enter
 
 To exit the sudoers file
 
-====================================
+==================================
 Day 08 - 25th SEP (Thursday)
-====================================
+==================================
 
-Multiple user
-File Permission
+Enable password based authentication for the user
+==================================================
 
+To enable password authentication for the user we have to enable PasswordBasedAuthentication in sshd_config file
+
+
+$ sudo cat /etc/ssh/sshd_config  ==> Display content of sshd_config file
+
+$ sudo vi /etc/ssh/sshd_config ==> Open the ssh config file
+
+==> Get into insert mode , set PasswordAuthentication yes
+
+$ sudo systemctl restart sshd ==> restart sshd service
+
+Login to EC2 Amazon Linux VM with a new user other than ec2-user
+=================================================================
+
+Get connected to Linux vm as diff user
+(watch live class demonstration recording)
+
+
+
+File Permission in Linux
+=========================
+
+-> read => r
+-> write => w
+-> execute => x
+
+In Permissions every file will have 3 sections
+
+=> user (u)
+=> group (g)
+=> otherusers (o)
+
+user group other
+
+read write execute
+  r    w     x
+
+rw-r--r--
+
+user -> read and write
+group -> read
+others -> read
+
+Change the file permission
+===========================
+
+chmod command
+
+$ chmod u+x alien.txt  ==> Gives execute permission for user
+
+$ chmod g+w aws.txt  ==> Gives write permission for group
+
+$ chmod o+x aws.txt  ==> Gives execute permission for others
+
+$ chmod o-x aws.txt  ==> Removes execute permission for other
+
+$ chmod u-x alien.txt  ==> Removes execute permission for user
+
+
+File Permission in the numeric format
+=====================================
+
+0 => No permission
+1 => execute
+2 => write
+3 => (execute + write)
+4 => read
+5 => 4 + 1 (read + execute)
+6 => 4 + 2 (read + write)
+7 => 6 + 1 ( read + write + execute)
+
+rw-r--r--
+644
+
+- ==> 0
+x ==> 1
+w ==> 2
+xw ==> 3
+r ==> 4
+rx ==> 5
+rw ==> 6
+rwx ==> 7
+
+chmod 400 "linuxkp.pem"  ==> r-------- 
+
+chmod 666 aws.txt ==> rw-rw-rw-
+
+chmod 444 aws.txt ==> r--r--r--
+
+chmod 777 aws.txt ==> rwxrwxrwx
+
+What is the default permission for a directory in Linux
+755 rwxr-xr-x.
+
+What is the default permission for a file in Linux
+644 rw-r--r--..
+
+Highest permission for any file in Linux ==> 777 ==> rwxrwxrwx
+
+chmod u+x <file-name>
+
+==========================
+Day 09 - 29th SEP (Monday)
+==========================
+
+Changing file/directory ownership
+=================================
+
+$ chown
+$ sudo chown <newowner> filename
+$ sudo chown Suraj aws.txt  ==> Change owner of the file to new Onwer Binzila
+
+
+$ sudo chown :<groupname> filename.directory
+$ sudo chown :telusko terraform.txt ==> Change owner group to telusko
+
+
+$ sudo chown <ownername>:<groupname> filename
+$ sudo chown Binzila:telusko terraform.txt
+
+chmod vs chown
+===============
+chmod ==> To change file/directory permission
+chown ==> To change the owner/group of a file
+
+
+==================
+locate and find command
+==================
+$ locate aws.txt
+-bash: locate: command not found
+
+$ sudo yum install locate
+
+$ locate aws.txt
+locate: can not stat () `/var/lib/mlocate/mlocate.db': No such file or directory
+
+locate ==> it is used to locate or find the location of directory or file in the system by name
+
+It will search for the file or directories updated in located not in entire file system unlike find command
+
+to update locatedb ==> sudo updated
+
+
+$ locate telusko
+/home/ec2-user/telusko
+/home/ec2-user/telusko/aws.txt
+/home/ec2-user/telusko/docker.txt
+
+==> locate command is super- faster then find command to locate or find any file or directory in linux
+
+==> find command searches entire Linux file system (based on given path)
+
+$ sudo find /home -name terraform.txt  ==> search for the file which is having name terraform.txt in entire Linux file system
+/home/ec2-user/terraform.txt
+
+$ sudo find /home -type f -empty  ==> search for empty files inside /home
+
+$ sudo find /home -type d -empty ==> search for empty directory inside /home
+/home/ec2-user/alien
+/home/ec2-user/devops
+
+$ sudo find /home -mtime +2 -print  ==> search and list all files and directories within /home that were last modified in last 2 days
+
+$ sudo find /home -mtime +2 -delete ==> search and delete all files within /home  that were modified in last 2 days 
+
+
+==========================================
+grep vs locate vs find   || locate vs find ==> Assignment
+==========================================
+
+Working with zip files in Linux
+================================
+
+==> Zip file is used for files archives (compressed files)
+$ zip <zip-filename> <context>
+$ zip devops *.txt ==> it will create a zip file by name devops and add all the text of current directory into it.
+
+$ zip -sf devops.zip  ==> it will display/print the content of a zip file
+
+Archive contains:
+  ansible.txt
+  aws.txt
+  docker.txt
+  k8s.txt
+Total 4 entries (172 bytes)
+
+$ zip -r devops.zip f1.txt ==> adding file f1.txt file into existing zip file
+
+$ zip -d devops.zip f1.txt
+
+$ rm devops.zip  ==> delete the zip file
+
+$ unzip devops.zip ==> unzip the file
+
+$ unzip -l devops.zip  ==> list the content of devops.zip file
+
+====================
+Networking commands
+====================
+
+==> Package Managers are used to install/update software in Linux machine
+
+==> Package managers are specific to Linux distributions
+
+Ubuntu/Debian ==> apt
+
+Amazon Linux / Red hat / CentOs ==> yum
+
+
+//Install git and java in amazon linux
+$ sudo yum install git 
+
+$ sudo yum install java
+
+
+//Install git and java in ubuntu
+$ sudo apt install git
+
+$ sudo apt install java
+
+wget
+curl
+ping
+awk 
 
 
 
