@@ -628,6 +628,16 @@ uid=1003(Suraj) gid=1003(Suraj) groups=1003(Suraj)
 $ sudo groupadd <group-name>
 $ sudo groupadd telusko
 
+==> deleting a group
+$ sudo groupdel <groupname>
+$ sudo groupdel ali
+
+==>Display current user's groups
+$ groups
+
+==>List all the groups
+$ cat /etc/group
+
 ==> Adding user to a group
 
 $ sudo usermod -aG telusko Suraj  ==> adding Suraj to telusko user group
@@ -853,7 +863,30 @@ $ sudo find /home -mtime +2 -delete ==> search and delete all files within /home
 ==========================================
 grep vs locate vs find   || locate vs find ==> Assignment
 ==========================================
+| Command    | Searches                    | Uses Database?      | Speed                         | Example Use Case                        |
+| ---------- | --------------------------- | ------------------  | ----------------------------- | --------------------------------------- |
+| **grep**   | File **contents**           | ❌ No               | Medium (depends on file size) | Find a word in a log file               |
+| **locate** | File **names**              | ✅ Yes (`updatedb`) | Very Fast                     | Quickly find path of a file             |
+| **find**   | File **names + attributes** | ❌ No               | Slower                        | Search by name, size, type, permissions |
+============================================
+| Feature / Aspect                   | **grep**                                                       | **locate**                                                      | **find**                                                                  |
+| ---------------------------------- | -------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| **Primary Use**                    | Search **inside files** for text patterns                      | Search for files/directories by **name substring**              | Search for files/directories by **name and attributes**                   |
+| **Search Target**                  | File **contents** (lines, regex, words)                        | File **names & paths** only                                     | File **names, metadata, and attributes**                                  |
+| **Data Source**                    | Reads files directly from disk                                 | Uses a pre-built **database** (`updatedb`)                      | Scans the **live filesystem**                                             |
+| **Accuracy**                       | Always up-to-date (reads directly)                             | Might be outdated if `updatedb` not run recently                | Always up-to-date (real-time scan)                                        |
+| **Speed**                          | Medium (depends on file size & number of files)                | Very fast (instant lookup from DB)                              | Slower (walks through directories)                                        |
+| **Pattern Support**                | Yes (regex, fixed strings, case-insensitive, etc.)             | Limited (simple substring match, no regex by default)           | Yes (regex, wildcards, size, time, owner, permissions, etc.)              |
+| **Common Options**                 | `-i` (ignore case), `-r` (recursive), `-n` (show line numbers) | `-i` (ignore case), `-c` (count), `--regex` (some distros)      | `-name`, `-iname`, `-type`, `-size`, `-mtime`, `-user`, `-exec`           |
+| **Example**                        | `grep "error" /var/log/syslog` → find lines containing "error" | `locate passwd` → show all paths with "passwd" in name          | `find /etc -name passwd` → search live filesystem for file named "passwd" |
+| **Dependencies**                   | None (works standalone)                                        | Needs `mlocate` / `plocate` package and regular `updatedb` runs | Built-in to most Linux systems                                            |
+| **Output**                         | Matching **lines** from inside files                           | List of **file paths**                                          | List of **file paths** (can also execute actions)                         |
+| **Can Search Inside Files?**       | ✅ Yes                                                         | ❌ No                                                           | ❌ No (but can be combined with `-exec grep`)                              |
+| **Can Search by File Attributes?** | ❌ No                                                          | ❌ No                                                           | ✅ Yes (size, time, type, permissions, owner, etc.)                        |
+| **Best For**                       | Finding text/patterns in logs, configs, code                   | Quickly locating file locations by name                         | Advanced file searching with conditions                                   |
 
+
+================================
 Working with zip files in Linux
 ================================
 
