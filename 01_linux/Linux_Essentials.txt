@@ -686,7 +686,7 @@ ctrl+x+y --> enter
 
 To exit the sudoers file
 
-==================================
+=============================================================================================================================================================================================================================================
 Day 08 - 25th SEP (Thursday)
 ==================================
 
@@ -794,7 +794,7 @@ Highest permission for any file in Linux ==> 777 ==> rwxrwxrwx
 
 chmod u+x <file-name>
 
-==========================
+============================================================================================================================================================================================================================================
 Day 09 - 29th SEP (Monday)
 ==========================
 
@@ -937,10 +937,275 @@ $ sudo apt install git
 
 $ sudo apt install java
 
-wget
-curl
-ping
-awk 
+
+============================================================================================================================================================================================================================================
+Day 10 - 30th SEP (Tuesday)
+=============================
+
+wget: It is used to download files from internet
+
+$ wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.109/bin/apache-tomcat-9.0.109.zip.asc
+
+curl : To send Http request to api and get response
+
+curl https://api/endpoints
+
+
+$ ifconfig : To get Ip address of the machine
+
+ping : To check the connectivity 
+
+$ ping 192.164.2.1
+
+$ ping www.google.com
+
+ctrl+c
+
+free : To print/display memory level details
+
+top : To print/display running processes
+
+============
+AWK command
+============
+==> It is a versatile processing tool in Linux
+
+==> It allows us to manipulate and extract data from a structured text file
+usually in a columnar format
+
+==> awk takes input processes it line by line and perform actions based on specified pattern and rules
+
+$ awk 'pattern{action}' file
+
+$ awk '/manager/{print}' telusko.txt
+
+Harsh is general manager
+sushil is content manager
+ishan is app manager
+
+$ awk '/Manager/{print}' telusko.txt
+
+akshay is backend Manager
+gaurav is support Manager
+ 
+$ awk '{print $1,$4}' telusko.txt  ==> 1 and 4 are column numbers
+
+Harsh manager
+sushil manager
+akshay Manager
+gaurav Manager
+ishan manager
+
+$ awk '{print NR, $0}' telusko.txt
+
+1 Harsh is general manager
+2 sushil is content manager
+3 akshay is backend Manager
+4 gaurav is support Manager
+5 ishan is app manager
+
+$ awk '{print NR, " - " $1}' telusko.txt
+
+1  - Harsh
+2  - sushil
+3  - akshay
+4  - gaurav
+5  - ishan
+
+==========================
+awk vs grep vs sed vs cat
+==========================
+
+Inode number : It is a unique number which gives unique identity for every file on Linux and this number will be assigned to all files created on linux
+
+To check inode number of any file 
+
+$ ls -li
+
+9182234 -rw-r--r--. 1 ec2-user ec2-user   0 Sep 30 16:11 alien.txt
+9272247 -rw-r--r--. 1 ec2-user ec2-user 833 Sep  1 12:43 apache-tomcat-9.0.109.zip.asc
+9182233 -rw-r--r--. 1 ec2-user ec2-user 124 Sep 30 16:03 telusko.txt
+
+Link files in Linux
+====================
+
+==> Similar to shortcut files on windows, In Linux we can create link files 
+   -> Hard Link
+   -> Soft Link
+
+==> Hard Link
+===============
+
+$ ln <originalfile> <linkfile>
+
+$ ln telusko.txt teluskoai.txt
+
+$ ls -l
+
+Check inode number of both files
+
+$ ls -li
+
+9182233 -rw-r--r--. 2 ec2-user ec2-user 124 Sep 30 16:03 telusko.txt
+9182233 -rw-r--r--. 2 ec2-user ec2-user 124 Sep 30 16:03 teluskoai.txt
+
+telusko(original file) and teluskoai(link) will have same inode number
+
+Note : 1) If we add new content or update or modify the original file then it will reflect in link file also
+
+2) If we delete the original file then it will have no impact/affect on link file
+
+Soft Link
+==========
+
+==> ln -s <originalfile> <softlinkfile>
+
+$ ln -s devops.txt devopsai.txt
+
+$ ls -l
+
+-rw-r--r--. 1 ec2-user ec2-user   0 Sep 30 16:23 devops.txt
+lrwxrwxrwx. 1 ec2-user ec2-user  10 Sep 30 16:24 devopsai.txt -> devops.txt 
+
+$ ls -li
+
+9182235 -rw-r--r--. 1 ec2-user ec2-user   0 Sep 30 16:23 devops.txt
+9182237 lrwxrwxrwx. 1 ec2-user ec2-user  10 Sep 30 16:24 devopsai.txt -> devops.txt
+
+==> Original and softlink file will have diff inode number and by default new soft link file will have maximum file permission(meaning less permission)
+
+Note : 1) If we add new content or update or modify the original file then it will reflect in link file also
+
+2) If we delete the original file then it will have impact/affect on link file and we cannot access soft link file
+
+
+Webservers in Linux VM
+======================
+
+==> Webserver is a tool/software which is used to host/run websites
+
+==> We can use 'httpd' as a webserver in our Linux vm
+
+$ sudo yum install httpd  ==> Install httpd server
+
+$ sudo service httpd start ==> start httpd webserver
+
+==> httpd webserver runs on 80 port number
+==> To access our webapp we need to enable 80 port number in security group of our Linux vm
+     (please watch live class instructions)
+
+
+==> Navigate to web content directory
+
+$ cd /var/www/html
+
+$ pwd 
+
+/var/www/html
+
+$ sudo vi index.html
+
+Access the website using public ip of Linux vm
+
+===============================
+Day 11 - 01 OCT (Wednesday) 
+===============================
+
+systemctl in Linux
+===================
+==> It is a command-line utility in Linux to manage system services
+
+==> Some common tasks that systemctl can perform are
+starting service
+stopping service
+restarting service
+enabling /disabling services
+
+examples: 
+
+sudo systemctl start docker 
+sudo systemctl enable docker
+
+sudo systemctl enable jenkins
+sudo systemctl start Jenkins
+sudo systemctl status Jenkins
+
+sudo systemctl restart sshd ==> restart sshd service
+
+
+systemctl start service-name ==> start a service
+systemctl stop service-name ==> stops a service
+systemctl restart service-name ==> restart service
+systemctl enable service-name ==> enables service to start automatically at boot time
+systemctl disable service-name ==> disables service to start automatically at boot time
+systemctl status service-name ==> shows the current status of the service
+systemctl list-units --type=service ==> list all active services 
+systemctl reload service-name ==> reloads configuration files for a service without stopping
+
+===============================
+How to change hostname in Linux VM
+
+$ sudo hostname <new-name>
+
+$ exit ( exit and re connect)
+
+If we reboot or restart Linux machine the changes will not be reflected 
+
+Set Hostname permanently
+=========================
+$ sudo vi /etc/hostname
+
+restart the VM
+
+You will be able to see the change of host name
+
+=>Print networking related info
+$ netstat
+
+=> How to check Linux kernel version
+
+$ uname -r
+
+6.1.150-174.273.amzn2023.x86_64
+
+=> Check Linux OS version
+
+$ cat /etc/os-release
+
+NAME="Amazon Linux"
+VERSION="2023"
+ID="amzn"
+ID_LIKE="fedora"
+VERSION_ID="2023"
+PLATFORM_ID="platform:al2023"
+PRETTY_NAME="Amazon Linux 2023.8.20250915"
+ANSI_COLOR="0;33"
+CPE_NAME="cpe:2.3:o:amazon:amazon_linux:2023"
+HOME_URL="https://aws.amazon.com/linux/amazon-linux-2023/"
+DOCUMENTATION_URL="https://docs.aws.amazon.com/linux/"
+SUPPORT_URL="https://aws.amazon.com/premiumsupport/"
+BUG_REPORT_URL="https://github.com/amazonlinux/amazon-linux-2023"
+VENDOR_NAME="AWS"
+VENDOR_URL="https://aws.amazon.com/"
+SUPPORT_END="2029-06-30"
+
+
+==> Redirect output to a file
+
+$ echo -e 'telusko\ndevops\naws' > aws.txt
+
+$ cat aws.txt
+telusko
+devops
+aws
+
+==> Running process in Linux machine
+
+$ ps aux
+
+==> Kill running process
+
+$ sudo kill <pid>
 
 
 
