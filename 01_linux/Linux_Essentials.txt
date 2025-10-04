@@ -1207,7 +1207,78 @@ $ ps aux
 
 $ sudo kill <pid>
 
+============================================================================================================================================================================================================================================
+Day 12 - 3rd OCT (Friday)
+===========================
 
+To check default shell
+$ echo $SHELL
+/bin/bash
+
+$ echo $0
+-bash
+
+
+Architecture of Linux
+======================
+
+Hardware 
+Kernel
+Shell
+Application
+
+Linux is CLI based free and open source OS which is highly secure.
+It is a multi user based OS
+
+Whenever we execute any Linux commands shell will read our commands and it translates commands into kernel understandable format
+
+Shell is a mediator between user and kernel
+(Takes commands from the user , intercepts them, and passes them to the kernel for the execution)
+
+Kernel -> It is core component of Linux OS which will convert commands into Linux hardware understandable format and manages CPU, RAM, IO devices and all hardware components
+
+man <command name>
+
+info <command-name>
+
+help <command-name>
+
+man pwd
+info pwd
+help pwd
+
+File Based Operations
+Text Editors
+Text filters
+users management
+file permissions
+file ownership
+archieves
+Networking
+sudoes file
+ssh_config
+static website hosting (httpd)
+packagers
+Linux architecture
+
+================
+Shell Scripting ==> Bash Shell Scripting
+=================
+
+Set of commands in a file for execution is Scripting which will help us to automate our daily routine task
+
+The process of executing the script file using bash shell is called as bash shell scripting which is used to automate regular task in a project
+
+$ vi telusko.sh
+pwd
+whoami
+date
+cal
+
+.sh is extention for any shell script
+
+To execute shell script
+$ sh telusko.sh
 
 
 
