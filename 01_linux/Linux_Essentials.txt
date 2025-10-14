@@ -1282,7 +1282,127 @@ $ sh telusko.sh
 
 =============================================================================================================================================================================================================================================
 
+Day13 - 8th OCT - (Wednesday)
+=============================
+shebang in shell script
+-----------------------
 
+Writing shebang is optional but highly recommended
+
+#! /bin/bash
+
+$ echo $SHELL
+/bin/bash
+
+Variables
+==========
+To Store info or data we use variables in scripting
+
+There are 2 types of variables
+
+1) pre-defined / env variables
+
+$ echo $SHELL
+/bin/bash
+
+$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+2) user defined variables
+
+id= 4
+name= rohan
+city= Bengaluru
+
+==> variables are case sensitive
+
+==> We need not to define any data type in shell scripting
+
+$ vi var-script.sh
+#! /bin/bash
+
+echo "Enter Your Name"
+read FULLNAME
+echo "Enter Your City Name"
+read CITY
+
+echo "Name and City : $FULLNAME $CITY "
+
+$ sh var-script.sh
+
+===================================
+Rules to work with variables
+===================================
+Variable name must mot start with digits -> 1name(invalid), id1(valid)
+
+It must not have any special characters -> @ # $
+
+Note: It is highly recommended to use UPPERCASE for variable naming
+
+Operators
+==========
+
+Operators are used to perform operations on variables/data
+
+Arithmetic operations
+=====================
+
+Addition : $((NUM1 + NUM2))
+
+Subtraction: $((NUM1 - NUM2))
+
+Multiplication : $((NUM1 * NUM2))
+
+Division : $((NUM1 / NUM2))
+
+Modulas : $((NUM1 % NUM2))
+
+===========================
+$ vi oper1.sh
+#! /bin/bash
+
+echo "Enter the first number to ADD"
+read NUM1
+echo "Enter the second number to ADD"
+read NUM2
+
+echo "Result of addition is : $((NUM1+NUM2)) "
+
+$  sh oper1.sh
+Enter the first number to ADD
+44
+Enter the second number to ADD
+44
+Result of addition is : 88
+
+=========================
+Comparison operators
+=========================
+
+equal : == ( -eq )
+not equal : !=
+greater than : > ( -gt )
+less than : < ( -lt )
+
+========================
+
+Conditional Statement
+=====================
+if - else
+
+if [ condition 1 ] ; then
+
+// something
+
+elif [ condion 2 ] ; then
+
+// something
+
+else
+
+//something
+
+fi
 
 
 
