@@ -1405,7 +1405,228 @@ else
 fi
 
 
+=============================================================================================================================================================================================================================================
+Day 14 - 13th OCT Monday
+=============================
+$ vi conditional1.sh
+#! /bin/bash
 
+echo "enter the first number"
+
+read NUM1
+
+echo "enter the second number"
+
+read NUM2
+
+if [ $NUM1 -eq $NUM2 ] ; then
+        echo "Numbers are equal"
+else
+        echo "Number are not equals"
+fi
+
+$ sh conditional1.sh
+
+---------------------------------------
+
+$ vi conditional1.sh
+#! /bin/bash
+
+echo "enter the first number"
+
+read NUM1
+
+if [ $NUM1 -gt 0 ] ; then
+        echo "Number is positive number"
+elif [ $NUM1 -lt 0 ] ; then
+        echo "Number is negative number"
+else
+        echo "Number is zero"
+fi
+
+
+$ sh conditional1.sh
+
+---------------------------------------
+loop statements
+===============
+
+=> Loops are used to execute statements multiple times at any given point of time 
+
+=> We can use loops in 2 ways
+
+Range based loops ( for loop )
+Conditional based loops ( while )
+
+For Loop Syntax
+===============
+
+for ((initialization ; condition ; update))
+do
+ //something
+done
+
+$ vi loop1.sh
+#! /bin/bash
+
+for((i=1 ; i<=4 ; i++))
+do
+echo "Focus is the key to maser any skill"
+done
+
+$ sh loop1.sh
+
+Print Numbers from 1 to 5
+------------------------
+$ vi loop1.sh
+#! /bin/bash
+
+for((i=1 ; i<=5 ; i++))
+do
+echo "$i"
+done
+
+$ sh loop1.sh
+
+Print Numbers from 5 to 1
+---------------------------
+$ vi loop1.sh
+#! /bin/bash
+
+for((i=5 ; i>=1 ; i--))
+do
+echo "$i"
+done
+
+$ sh loop1.sh
+
+--------------------------------
+While Loop
+
+--> While loop is used to execute statements until the condition is true
+
+
+Print Numbers from 1 to 5
+==========================
+$ vi loop2.sh
+
+#! /bin/bash
+NUM=1
+
+while [ $NUM -lt 5 ]
+do
+echo "$NUM"
+let NUM++
+done
+
+$ sh loop2.sh
+
+
+Infinite loop
+=============================
+=> The loop which gets executed or run non stop 
+
+$ vi infiloop2.sh
+
+#! /bin/bash
+NUM=1
+
+while [ $NUM -lt 5 ]
+do
+echo "$NUM"
+
+done
+
+$ sh infiloop2.sh
+
+Note : press ctrl+c to stop infinite loop
+==========================================
+
+Functions / Methods
+=================
+
+==> Functions are used to perform some activity / task
+==> Functions are usable
+
+Syntax
+======
+function functionName()
+{
+   //function body
+}
+call function name for the execution
+
+functionName
+
+---------------------------------
+$ vi function-demo1.sh
+#! /bin/bash
+
+function telusko(){
+
+        echo "Telusko DevOps Learning"
+        echo "Telusko WIll start AI Engineering Course in Jan"
+        echo "DevOps with any cloud is important"
+
+}
+
+telusko
+telusko
+telusko
+
+
+$ sh function-demo1.sh
+-----------------------------------
+Q : Write a function which would read a filename from user and print content of that file
+
+$ vi function2.sh
+
+#! /bin/bash
+
+function doTask(){
+
+        echo "Enter the file name"
+        read FILENAME
+
+        cat $FILENAME
+}
+
+doTask
+
+esc
+:wq
+
+
+$ sh function2.sh
+
+-------------------------------------
+Q: Write a shell script to define a function that will read a file name from user and check if file is present or not , if its present print the content and if it is not present then create a file
+
+
+$ vi function3.sh
+#! /bin/bash
+
+function fileOps(){
+
+        echo "Enter the file name"
+        read FILENAME
+
+        if [ -f "$FILENAME" ] ; then
+                echo "File is present and the content of file as as follows "
+                cat $FILENAME
+        else
+                echo "File name entered is not present hence creating new file"
+                touch $FILENAME
+                echo "file created"
+        fi
+}
+
+fileOps
+
+$ sh function3.sh
+
+Note : -f is a file test operator used inside if block 
+=========================================================
 
 
 
