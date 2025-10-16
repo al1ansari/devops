@@ -832,7 +832,7 @@ locate: can not stat () `/var/lib/mlocate/mlocate.db': No such file or directory
 
 locate ==> it is used to locate or find the location of directory or file in the system by name
 
-It will search for the file or directories updated in located not in entire file system unlike find command
+It will search for the file or directories updated in locate db & not in entire file system unlike find command
 
 to update locatedb ==> sudo updated
 
@@ -1626,7 +1626,204 @@ fileOps
 $ sh function3.sh
 
 Note : -f is a file test operator used inside if block 
-=========================================================
+=============================================================================================================================================================================================================================================
+Day 15 - 14th OCT (Tuesday)
+============================
+
+Command line arguments
+======================
+==> Command line arguments are used to supply data/arguments to script file at the time of execution
+
+$ sh telusko.sh 44 45 46
+
+==> Command line arguments can be accessed in script file as follows
+$1 -> To Read first argument
+$2 -> To Read 2nd argument
+$0 ->  To get the script file name
+$* -> To read all args
+$# -> To get total number of argumens
+
+$ vi teluskoai.sh
+#! /bin/bash
+
+echo "Script file name: $0 "
+echo "All cmd line args : $*"
+echo "Total number of arguments: $#"
+echo "First argument : $1"
+
+$ sh teluskoai.sh java devops aws k8s
+
+Script file name: teluskoai.sh
+All cmd line args : java devops aws k8s
+Total number of arguments: 4
+First argument : java
+============================================
+$ vi add.sh
+#! /bin/bash
+
+RESULT=$(($1+$2))
+echo "SUM of 2 args is : $RESULT"
+
+$ sh add.sh 44 44
+SUM of 2 args is : 88
+
+==============================================
+Write a shell script to check given string is palindrome or not
+Write a shell script to check given number is prime or not
+Write a shell script to check given number is even or odd
+==============================================
+
+Scheduling and CRON JOB
+=======================
+
+==> It refers to configuring the tasks to be executed automatically (Setting Alarm in Phone)
+
+==> Similar to alarm Trigger if we want to schedule my Linux command/script file execution we can use CRON to schedule jobs execution
+
+==> CRON is a utility in Linux to schedule jobs execution
+
+ex: Take backup of files
+    System health check
+
+CROND
+======
+CROND => is a daemon process (background process), every minute CROND will be checking if CRON JOBs schedule for the execution 
+
+CRON Job Syntax
+----------------
+
+one two three four five six
+
+* * * * * <command/scriptfile>
+
+--> First * ==> minutes (0-59)
+--> Second * ==> hour (0-23)
+--> Third * ==> day of month (1-31)
+--> Fourth * ==> Month of year (1-12)
+--> Fifth * ==> Day of Week (0-6)(Sun-Mon)
+
+5 * * * * touch telusko.txt
+
+* * * * * touch telusko.txt
+
+More CRON Schedules examples
+============================
+
+Run every day 5 am ==>  0 5 * * * <task/scriptfile>
+
+Run every day 5 pm ==> 0 17 * * * <task.scriptfile>
+
+Run 5 min of 9 am of 15th day  8 aug 5th day of week ==> 5 9 15 8 5 echo "Hello"
+
+Run on 1st day of month ==> 0 8 1 * * <task/script>
+
+Run on Every Monday @ 10 am ==> 0 10 * * 1 <task/command/script>
+
+Run on 15th of every month @ mid night (00:00) ==> 0 0 15 * * <task/command/script>
+
+Run every workday (Mon-Friday) @ 6pm ==> 0 18 * * 1-5 <task/command/script>
+
+Run every 2 hour starting from top of hour ==> * */2 * * * <task/command/script>
+
+
+Crontab file 
+============
+ Used to configure cronjobs execution
+
+$ crontab -e ==> It opens crontab file
+
+$ crontab -l ==> display scheduled jobs
+
+
+========================
+
+$ sudo yum update -y
+
+$ sudo yum install cronie -y
+
+$ sudo systemctl start crond
+$ sudo systemctl enable crond
+
+$ crontab -l 
+
+$ crontab -e ==> opens crontab file where we can edit current users cron jobs
+$ crontab -u root -e  ==> opens crontab filw where we can edit root user cron jobs 
+
+Follow live class insructions for demo
+=================================
+
+Shell Script to print system info
+=================================
+
+
+$ vi systemdetails.sh
+
+#! /bin/bash
+
+# hostname system
+echo "Hostname : $(hostname)"
+
+# current date and time
+echo "Date and Time : $(date)"
+
+# display system uptime
+
+echo "System Uptime : $(uptime)"
+
+echo "Memory usage"
+free -h
+
+
+$ sh systemdetails.sh
+
+Hostname : telusko-linux
+Date and Time : Tue Oct 14 16:32:54 UTC 2025
+System Uptime :  16:32:54 up  1:01,  1 user,  load average: 0.00, 0.00, 0.00
+Memory usage
+               total        used        free      shared  buff/cache   available
+Mem:           904Mi       178Mi       452Mi       0.0Ki       273Mi       591Mi
+Swap:             0B          0B          0B
+
+Extra part on variables
+==========================
+Note : If we use export command in terminal for setting variables then those variables will be removed once we close our terminal and we refer these variables are temporary variables
+
+Set variables permanently
+=========================
+==> We use .bashrc file to set variables permanently for the user
+
+$ cat .bashrc  => info of bashrc file
+
+$ vi .bashrc ==> open the .bashrc file
+
+course=java
+instructor=navinreddy
+
+added variables into .bashrc file
+
+$ source .bashrc ==> apply .bashrc changes
+
+Access variables closing and opening terminal 
+$ echo $course
+
+Note: In Linux machine , every user will contain their own .bashrc file
+
+Set variables for all user of Linux
+===================================
+
+==> If we want to add variables for all users then we can add that in /etc/profile
+$ cat /etc/profile
+
+Absolute vs relative path
+===========================
+
+Absolute Path: Giving someone the complete, exact street address (including city, state, zip code) so they can find it no matter where they start.
+
+An absolute path (also called a full path) is the complete and unambiguous location of a file or directory on a file system, starting from the very top of the directory tree
+
+Relative Path: Giving someone directions from where they currently are ("Go two blocks straight, then turn left"). These directions only make sense if you know the starting point.
+
+A relative path specifies the location of a file or directory in relation to your current working directory (CWD). Its meaning changes depending on where you currently are in the file system.
 
 
 
