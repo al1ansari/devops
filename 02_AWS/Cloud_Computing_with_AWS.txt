@@ -1,0 +1,162 @@
+AWS Live Classes 15th OCT 2025 (Wednesday)
+
+Telusko
+Instructor : Hyder Abbas
+
+=========================================
+Day 16 - 15th OCT (Wednesday)
+
+Cloud Computing with AWS
+=========================================
+
+Infrastructure 
+==============
+==> The resources required to run our project/company(Machines, networks, storage, database, monitoring...)
+
+==> We can maintain infrastructure in 2 ways
+1) On-Prem infrastructure
+2) Cloud infrastructure
+
+On-Prem infrastructure
+======================
+==> Purchasing and maintaining all resources by our own 
+
+==>Challenges/Limitations associated with on-prem infrastructure
+
+   -> Lot of cost
+   -> Scalability
+   -> Security Issue
+   -> Networking
+   -> Availability
+   -> Natural Disaster
+     ----
+     ----
+
+==> To overcome challenges associated with on-prem infra we can prefer cloud computing
+
+
+Cloud Computing
+===============
+
+==> Delivering IT resources over internet on-demand basis with "Pay As You Go" Model is referred as Cloud Computing
+
+
+Advantages/benefits
+===================
+=> Pay as you go model
+=> Security
+=> Backup
+=> Scalability 
+=> Availability
+    ===
+    ===
+
+Cloud Providers 
+===============
+AWS ==> Amazon
+Azure ==> Microsoft
+GCP ==> Google
+Oracle
+Ali Baba
+Salesforce
+===
+===
+===
+
+Cloud Service Models
+====================
+1) IAAS : Infrastructure as a service
+2) PAAS : Platform as a service
+3) SAAS : Software as a service
+
+IAAS : Infrastructure as a service
+===================================
+==> Provider will provide infrastructure 
+   ex: Machines(servers), storage, network
+
+We need to take care of platform and application
+
+PAAS : Platform as a service
+============================
+
+==> Provider will provide ready made platform to run our app (Provider will take care of infrastructure and platform)
+ex: AWS Elastic beanstalk
+
+The provider handles the underlying infrastructure and the software environment. You just focus on your code/app
+
+SAAS : Software as a service
+=============================
+==> Application + infrastructure + platform all will be maintained by provider
+
+Provider will give their application to run our business
+
+ex: Zoom, Google drive, Dropbox........
+
+
+AWS Cloud ==> Amazon Webservices
+===============================
+AWS  started from 2006
+
+AWS works on "pay as you go" model
+
+AWS Global Infrastructure
+The AWS Cloud spans 120 Availability Zones within 38 Geographic Regions (as of 15th OCT 2025)
+
+AWS global infrastructure is the most secure, reliable, and extensive cloud, providing diverse infrastructure solutions for running your applications anywhere.
+
+It is recommended to use nearest region to create infrastructure 
+
+==> AWS (Amazon Web Services) is a comprehensive, broadly adopted, and secure cloud platform, offering over 200 fully featured services from data centers globally. It provides on-demand delivery of IT resources and applications via the internet with pay-as-you-go pricing.
+
+In AWS we have 200+ services 
+
+-> Why Cloud and What is Cloud Computing
+-> Cloud Providers
+-> AWS Introduction and Services Overview
+-> Regions & AZ's
+-> EC2 ( Elastic Compute Cloud) -> To Create Virtual Machines ( Hourly )
+-> EBS (Elastic Block Store + volumes + Snapshots) --> Hard Disc, SSD
+-> Load Balancer : To distribute Load
+-> Autoscaling : Adjusting the capacity by based on the demand
+-> S3 : Unlimited Storage
+-> RDS : Relational Database service
+-> EFS : Shared File system ( Elastic file system
+-> IAM : Identity & Access Management
+-> VPC : Virtual Private Cloud ( Networking )
+-> Cloud Formation : Infrastructure as a code ---> Terraform
+-> AWS CLI : AWS Command Line Interface
+-> Elastic Beanstalk : Platform as a service
+-> AWS Lambdas : Serverless computing
+-> EKS : K8S cluster ( Elastic Kubernetes Service )
+-> Cloud Watch 
+-> Route53: Domain mapping
+-> SNS : Simple notification Service
+-> Billing Overview
+
+=============================================
+EC2 (Elastic Compute Cloud)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
