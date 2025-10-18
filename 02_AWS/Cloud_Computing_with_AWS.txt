@@ -133,9 +133,110 @@ In AWS we have 200+ services
 -> SNS : Simple notification Service
 -> Billing Overview
 
+=============================================================================================================================================================================================================================================
+Day 17 - 16th OCT  (Thursday)
 =============================================
 EC2 (Elastic Compute Cloud)
+=============================================
 
+--> EC2 --> Most demanded service in AWS
+
+--> Used to create Virtual Machines / Servers in AWS Cloud
+
+--> EC2 Instance == Server / VM /Machine /Computer
+
+Amazon Elastic Compute Cloud (EC2)
+Create, manage, and monitor virtual servers in the cloud.
+Amazon Elastic Compute Cloud (Amazon EC2) offers the broadest and deepest compute platform, with over 600 instance types and a choice of the latest processors, storage, networking, operating systems, and purchase models to help you best match the needs of your workload.
+
+--> It's paid service --> Hourly billing
+
+11:15 AM to 11:30 AM --> 15 mins --> 1 hour
+11:00 AM to 11:04 AM --> 4 minutes --> 1 hour
+11:00 AM to 12:00 PM --> 1hour
+
+--> EC2 VM min billing is 1 hour
+
+--> AWS Provides t2.micro/t3.micro 6 months of free ec2 instance to encourage learners for free tier account 
+
+--> Ec2 VM also have storage with EBS (EC2 Linux VM --> 8G (default), EC2 Windows VM --> 30GB (default), EBS --> 16TB)
+
+-> We use AMI(Amazon Machine Image) which represents Configuration required for the machine 
+
+  Windows AMI
+  Ubuntu AMI
+  RedHat AMI
+  Amazon Linux AMI
+
+-> To Secure access to EC2 VM we use Key-Pair (.pem) 
+    
+   -> One Key-Pair ( .pem ) can be used for multiple ec2-instances
+
+-> We use Security Group to allow incoming and outgoing traffic ( In bound rules and Out Bound rules )
+   
+   -> One Security Group ( SG ) can be used for multiple instances
+
+EC2 VM creation
+===============
+
+--> Create Key Pair( pem file ) 
+   public key   ( aws will keep it )
+   private key ( we get this )
+
+--> Create  a Security Group and update inbound rules based on requirement
+    
+    HTTP :80
+    HTTPS : 443
+    SSH : 22
+	..
+	..
+
+Note : We can create new key pair and Security Group at the time of instance creation also.
+
+--> Create EC2 Instance
+
+ 
+    -> Give a name VM
+    -> SELECT AMI
+    -> Instance Type
+    -> Select Key-pair ( choose existing one or create a new )
+    -> Select Security Group ( choose existing one or create a new )
+    -> Select EBS storage ( keep it default )
+    -> Launch Instance 
+
+Types of IP's in AWS
+====================
+1) private ip
+2) public ip
+3) elastic ip
+
+-> private IP -> Fixed Ip -> It is used for internal Communication (within VPC).
+
+-> public IP -> Dynamic IP -> It is used to connect with EC2 VM from outside. When we restart our VM the public IP gets changed.
+
+Dynamic Public IP --> 3.109.213.248    13.235.79.233
+
+Fixed private IP --> 172.31.7.164   172.31.7.164
+
+-> If we want fixed / static  public IP -> Elastic IP -> ( Elastic IP s are paid ) --> Charges would be applied and bills would be generated
+
+-> It will help us to get fixed public ip for our machine.
+
+Elastic IP Practical's
+=======================
+65.0.78.209  65.0.78.209  --> Same IP irrespective of how many times we restart VM
+
+--> Allocate Elastic IP ( Getting IP from AWS )  ( Elastic IP Section under EC2)
+
+--> Action --> Associate Elastic IP with EC2 VM/Instance
+
+--> Restart VM and Check public IP ( You will notice its same )
+
+--> De-Associated Elastic IP
+
+--> Release Elastic IP to AWS
+
+(Also refer to live class recording for demo)
 
 
 
