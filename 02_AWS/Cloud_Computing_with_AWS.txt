@@ -238,7 +238,324 @@ Elastic IP Practical's
 
 (Also refer to live class recording for demo)
 
+==============================
+Day 18 - 22nd Oct (Wednesday)
+=======================================================
 
+Elastic Block Store (EBS)
+==========================
+
+--> It is a block level storage device ( HDD / SSD )
+
+--> EBS will be attached with EC2 Instance
+
+--> EBS provides both Primary and Secondary storage for EC2 Instances
+
+--> EBS has 2 types of Volumes ( Storage )
+  
+    -> Root Volume
+    -> Additional Volume
+
+=> Root Volume is a default storage which comes whenever we launch a EC2 instance/machine
+
+-> Root Volume is mandatory to have and if we remove root volume from EC2 instance then we cannot start or use the instance/VM
+
+-> Additional Volumes are optional ( we can add or remove any time )
+
+-> For Linux VM, we get around 8 GB as default volume size ( root volume )
+
+-> For windows VM, we get around 30 GB as default volume size ( root volume )
+
+-> EBS Volumes can have upto 16 TB
+
+-> One EC2 VM can have multiple EBS Volumes
+
+-> One EBS Volume can be attached to one EC2 VM at a time not multiple
+
+-> EBS Volumes are specific to Availability Zone
+     
+                 Mumbai ( ap-south-1)
+                 ap-south-1a
+                 ap-south-1b
+                 ap-south-1c
+-> If our EC2 Instance is in ap-south-1a then our EBS volume must also be there in ap-south-1a zone 
+
+
+EBS Volume Types
+==================
+1) General Purpose ( Min: 1 GiB, Max: 16384 GiB )
+
+2) Provisioned IOPS ( Min: 4 GiB, Max: 16384 GiB )
+
+3) COLD HDD ( Min: 125 GiB, Max: 16384 GiB )
+
+4) Throughput optimized ( Min: 125 GiB, Max: 16384 GiB )
+
+5) Magnetic ( Min: 1 GiB, Max: 1024 GiB )
+
+Practical
+===========
+
+$ lsblk
+NAME          MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+nvme0n1       259:0    0   8G  0 disk
+├─nvme0n1p1   259:1    0   8G  0 part /
+├─nvme0n1p127 259:2    0   1M  0 part
+└─nvme0n1p128 259:3    0  10M  0 part /boot/efi
+nvme1n1       259:4    0  10G  0 disk /home/ec2-user
+
+
+--> Store Data ( files ) into the additional nvme1n1 dir1Volume we created using following commands
+
+    $ sudo mkfs -t ext4 /dev/nvme1n1
+    $ mkdir telusko
+    $ sudo mount /dev/xvdbb nvme1n1
+
+    $ cd telusko
+    $ sudo touch telusko.txt alien.txt
+
+
+--> Detach additional volume from EC2 Instance(VM)
+
+--> Created a new EC2 VM 
+
+--> Attached the same Additional volume into the new VM created
+
+--> Check the files available
+ 
+    $ lsblk
+    $ mkdir telusko
+    $ sudo mount /dev/nvme1n1 telusko
+    $ cd telusko
+    $ ls -l
+
+
+Note : Once Done with Practice, Detach the additional volumes and delete the volume as shown in the live class.
+
+===================================================
+
+Day 19 - 23rd OCT(Thursday)
+========================== 
+Snapshots
+============
+
+--> Snapshots are used for volumes backup
+
+--> Snapshots are regional specific ( Volumes are zone specific )
+
+--> From volume we can create snapshot and from snapshot we can create a volume
+  
+
+	Volume --> Snapshot --> Volume
+
+--> Snapshots cannot be attached to any VM ( EC2 instance ) directly  however Volumes could be attached to a VM ( EC2 Instance )
+
+Copy the data from 1a zone VM to 1b zone VM
+=============================================
+--> Create a Snapshot from 1a zone vm volume
+
+--> From that snapshot create a volume in 1b zone
+
+--> Attach the created 1b volume to 1b VM(EC2 instance)
+
+
+Website/WebApp
+==============
+
+--> Collection of web pages ( html pages )
+
+--> static websites <--> dynamic website
+
+--> static website will give same response for every user ( user page for all users )
+
+--> dynamic website will give response specific to user or diff response for diff users
+   ex: gmail, telusko, facebook ........
+
+--> To Host Any website or webapp we must have webservers 
+
+---------------------------------------------------
+Host a static website using httpd server
+-------------------------------------------------
+
+--> Webserver is a tool/software which is used to host/run websites
+
+--> We can use 'httpd' as a webserver in our Linux VM
+
+
+$ sudo yum install httpd --> Install httpd webserver
+ 
+$ sudo service httpd start --> start httpd webserver
+
+
+--> httpd webserver runs on 80 port number
+--> To access our website we need to enable 80 port number in security group ( watch live class recording to see how to do it )
+
+--> Navigate to web content directory
+
+$ cd /var/www/html
+
+$ pwd
+/var/www/html
+
+--> Create index.html file within this web directory
+$ sudo vi index.html
+<h1> Telusko deVops Learning </h1>
+
+--> We can access our website using Linux vm public ip
+
+user-data in EC2 VM
+====================
+
+--> It is used to execute shell script/commands while launching EC2 Instance ( VM )
+
+--> User data will execute only once
+
+--> Create an EC2 VM with following user data 
+
+#! /bin/bash
+
+sudo yum install httpd -y
+
+cd /var/www/html
+echo "<html><h1> Telusko Learning App - 1 </h1></html>" > index.html
+service httpd start
+
+--> After the VM is launched access the website using public ip in the web browser
+
+also follow live class recordings for the demo
+
+
+Day 20 (27h Oct)
+==============================================
+IAM (Identity and Access Management)
+==============================================
+Two ways access the aws cloud account
+1-> Root Account --> Powerful account with all the access and no restriction
+2 -> IAM account 
+
+--> It is used to manage users, groups, policies and roles
+
+--> IAM is a free service 
+
+--> Root account owner can access everything in AWS without any restrictions 
+    (It is highly recommended to enable high security by enabling Multifactor Authentication MFA for root user account)
+
+As a part of a team or a project you will be getting IAM account credentials with specific access 
+
+
+IAM Policies --> Permissions 
+=============================
+
+What actions are allowed or denied on which aws resources and under what condition
+
+Resource-specific: Permissions are almost always tied to specific AWS resources (e.g., a particular S3 bucket, an EC2 instance, a DynamoDB table).
+
+No inherent identity: A policy on its own does nothing. It's just a set of rules. It needs to be attached to an identity or a resource to take effect.
+
+IAM User
+========
+
+A person or application that needs to access AWS.
+
+Has a username and password / access keys.
+
+Can log in to the AWS Management Console or use CLI/API.
+
+Example: “haider” is an IAM user who can start EC2 instances.
+
+IAM Group
+===========
+
+A collection of IAM users.
+
+Helps you assign permissions to many users at once.
+
+Example:
+
+Group name: Developers
+
+Attached policy: AmazonEC2FullAccess
+
+→ Every user in that group gets EC2 full access
+
+IAM Role
+========
+
+A temporary identity with specific permissions.
+
+No username or password. Instead, AWS services or users assume the role.
+
+Used for giving temporary access or allowing AWS services to talk to each other.
+
+Example:
+
+An EC2 instance assumes a role that allows it to read data from an S3 bucket.
+
+
+28th OCT (Tuesday)
+
+Load Balancers and Auto Scaling group
+=====================================
+Load Balancer
+=============
+
+--> When we deploy our app into a single server then we might/may face the following issues/challenges
+
+    -> One Server trying to handle all requests coming to app 
+    -> Increased Burden on the server
+    -> Server may slow down leading delayed responses to the clients
+    -> Server can crash too
+    -> Single Point of Failure
+
+--> To Avoid the above issues, we shall deploy our app into multiple servers and implement the concept of load balancer
+
+--> Load Balancer is used to distribute load to multiple servers in round robin technique
+
+--> The following benefits could be noticed with Load balancer
+   
+    -> Our App will run on Multiple Servers
+    -> Load will be distributed into multiple servers
+    -> Burden will eventually reduced on servers
+    -> Fast Performance 
+    -> High Availability of our app 
+
+-> In AWS there are 4 types of Load Balancers
+
+   -> Application Load Balancer ( http & https )
+   -> Network Load Balancer
+   -> Gateway Load Balancer
+   -> Classic Load Balancer ( Legacy / outdated )
+
+  
+
+Application Load Balancer ( http & https )
+===========================================
+
+--> Create EC2 VM 1 with below following user data
+
+#! /bin/bash
+
+sudo yum install httpd -y
+
+cd /var/www/html
+echo "<html><h1> Telusko Learning App - 1 </h1></html>" > index.html
+service httpd start
+
+--> Create EC2 VM 2 
+
+#! /bin/bash
+
+sudo yum install httpd -y
+
+cd /var/www/html
+echo "<html><h1> Telusko Learning App - 2 </h1></html>" > index.html
+service httpd start
+
+--> Add these 2 webservers into one Target Group
+(follow live class instructions)
+
+--> Create a Application Load Balancer with Target Group (ALB)
+(follow live class instruction)
 
 
 
