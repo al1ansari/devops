@@ -3,7 +3,7 @@ AWS Live Classes 15th OCT 2025 (Wednesday)
 Telusko
 Instructor : Hyder Abbas
 
-=========================================
+=============================================================================================================================================================================================================================================
 Day 16 - 15th OCT (Wednesday)
 
 Cloud Computing with AWS
@@ -238,7 +238,7 @@ Elastic IP Practical's
 
 (Also refer to live class recording for demo)
 
-==============================
+=============================================================================================================================================================================================================================================
 Day 18 - 22nd Oct (Wednesday)
 =======================================================
 
@@ -332,7 +332,7 @@ nvme1n1       259:4    0  10G  0 disk /home/ec2-user
 
 Note : Once Done with Practice, Detach the additional volumes and delete the volume as shown in the live class.
 
-===================================================
+============================================================================================================================================================================================================================================
 
 Day 19 - 23rd OCT(Thursday)
 ========================== 
@@ -424,8 +424,8 @@ service httpd start
 
 also follow live class recordings for the demo
 
-
-Day 20 (27h Oct)
+============================================================================================================================================================================================================================================
+Day 20 (27th Oct)
 ==============================================
 IAM (Identity and Access Management)
 ==============================================
@@ -493,7 +493,7 @@ An EC2 instance assumes a role that allows it to read data from an S3 bucket.
 
 
 28th OCT (Tuesday)
-
+=============================================================================================================================================================================================================================================
 Load Balancers and Auto Scaling group
 =====================================
 Load Balancer
@@ -558,7 +558,104 @@ service httpd start
 (follow live class instruction)
 
 
+==> Access Load balancer DNS in browser (You will notice the requests to our servers getting distributed in round robin technique)
+============================================================================================================================================================================================================================================
+Day 22 - 29th Oct ( Wednesday)
+======================
+OSI Model (Open System Interconnection)
 
+The OSI (Open Systems Interconnection) model explains how data travels from a client to a server in a network. It has 7 layers, each with a specific role:
+
+Layer 1 – Physical Layer
+Transfers raw bits (0s and 1s) over cables or wireless signals (e.g., Ethernet, Wi-Fi).
+
+Layer 2 – Data Link Layer
+Provides reliable data transfer between two devices on the same network using MAC addresses. Handles error detection and correction.
+
+Layer 3 – Network Layer
+Routes data between different networks using logical addressing (like IP addresses). Determines the best path to the destination.
+
+Layer 4 – Transport Layer
+Ensures complete and reliable data transfer using protocols like TCP (reliable) or UDP (fast but not reliable).
+
+Layer 5 – Session Layer
+Manages and maintains communication sessions between devices. Handles setup, use, and termination of connections.
+
+Layer 6 – Presentation Layer
+Translates data formats between the application and the network (e.g., encryption, compression, encoding like JPEG, MP4).
+
+Layer 7 – Application Layer
+Closest to the user. Provides network services to applications like web browsers, email clients, etc. (e.g., HTTP, FTP, DNS).
+
+
+Application Load Balancer (ALB)
+===================================
+Works at OSI Layer 7
+(Application Layer)
+
+Makes routing decision based on url, headers, host, etc
+Example : Routes /api/* to one target group and /admin/* to another ..
+
+
+Network Load Balancer (ALB)
+============================
+
+Works at OSI Layer 4 (Transport layer)
+
+Ideal for real-time applications, gaming,......
+
+handles TCP, UDP and TLS traffic with very high performance and low latency
+=============================================================================================================================================================================================================================================
+Day 23 - 30th OCT(Thursday)
+============================
+
+Practical of Autoscaling , LoadBalancer and Target group
+
+
+Why Auto Scaling?
+====================
+
+During events like Big Billion Day Sale, traffic is unpredictable.
+
+You can't manually scale fast enough.
+
+Auto Scaling helps by:
+======================
+
+Increasing instances when traffic goes up
+
+Decreasing instances when traffic goes down
+
+✅ Benefits of Auto Scaling:
+==================================
+Fault Tolerance
+
+If an instance fails, another is launched automatically.
+
+Cost Management
+
+Only run the number of servers needed, saving money during low traffic.
+
+High Availability
+
+Keeps your application running smoothly under heavy load.
+
+
+Note : Follow live class instructions for the demonstration of ASG, LBR and TG
+
+
+How application will deployed into the new VM created by ASG?
+==============================================================
+
+
+1) Kubernetes Cluster (EKS)
+2) User Data Script
+3) Using Custom AMI
+4) Native Service (code deploy)
+
+
+How to connect with ec2 vm when you lost .pem file?
+===================================================
 
 
 
