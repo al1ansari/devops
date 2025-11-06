@@ -657,6 +657,189 @@ How application will deployed into the new VM created by ASG?
 How to connect with ec2 vm when you lost .pem file?
 ===================================================
 
+Day 24 3rd Nov (Monday)
+========================
+
+AWS RDS
+=======
+
+
+Database
+=========
+==> Its a tool/s/w which store data permanently
+
+==> We have relational databases ( tables --> rows and columns ) and no sql dbs ( mongo db ( docluments )
+       
+RDBMS --> oracle , SQLServer, Postgres, MySQL.........
+
+==> Every app will use database
+
+Limitations / Challenges with on_prem Database
+==============================================
+
+-> Purchase DB server License (Cost)
+
+-> Install Database server s/w 
+-> Network 
+-> Security 
+-> Backup 
+-> Administration
+
+---------------------------------------------------------------------
+
+==> To overcome the above problems we can go Cloud Providers Database
+
+==> AWS RDS is a database service from AWS which stands for Relational Database Service in AWS Cloud
+
+==> RDS is a fully managed service in AWS --> works based on "pay as you go " model
+
+RDS Lab task
+============
+
+==> Create MySQL database using RDS 
+
+==> Creation method : Standard create
+    Engine type: MySQL
+    Template: Free tier
+    db instance name identifier : teluskodb
+    public access : yes (since we are trying to access the db from outside vpc) Usually it will not be public
+    initial db name : teluskodatabase
+
+Once database is created get connected to it using MySQL workbench
+
+DB End point --> DB user name --> DB port number --> DB password
+
+==> Enable MYSQL port number 3306 in security group inbound rules which is being used in RDS
+
+==> Test the RDS by getting connected to it using workbench
+
+==> Execute some sample query to make sure its functional/working 
+
+use teluskodatabase;
+CREATE TABLE employee (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    salary DECIMAL(10,2)
+);
+INSERT INTO employee (id, name, salary)
+VALUES (1, 'Navin', 55000.00),
+       (2, 'Sana', 60000.50),
+       (3, 'Amit', 48000.25);
+
+-------------------------------------------------
+
+Day 25 - 4th Nov 2025
+================================
+AWS S3 (Simple Storage Service)
+================================
+-> S3 is a storage service in AWS which supports unlimited storage where we can store any amount of data from anywhere
+
+-> S3 supports Object based storage ( files )
+
+-> We can upload or download objects ( file) at  any given point of time using S3
+
+-> In S3, we create buckets to store the data  
+
+( note : Every bucket should have unique name  --> name which has not been used across globe )
+
+-> When we create a bucket an end-point url will be generated to access bucket and using this url we can upload object into bucket every object gets its own end-point url
+
+-> We can create multiple buckets in S3
+
+-> S3 is global service where in buckets are regional specific
+
+
+-> S3 is a storage service in AWS which supports unlimited storage and works on Object based storage ( audio, file, video file, image, pdf, text....)
+
+-> Every object in S3 is stored in a bucket. To upload files and folders to S3, you'll need to create a bucket where the objects will be stored
+
+-> Bucket names must be 3 to 63 characters and unique within the global namespace. Bucket names must also begin and end with a letter or number. Valid characters are a-z, 0-9, periods (.), and hyphens (-). 
+
+-> It's a pay as you go model
+
+Static Website Hosting with S3
+--------------------------------
+( Refer live class recordings to see it practical )
+
+S3 buckets could be used to host a static website however these days it's recommended to use AWS amplify to do the same
+
+--> The website which gives same response for all the users of an app can be referred as static website
+
+--> The website which gives response to a user is referred as Dynamic website
+
+-> Create S3 bucket with unique name  -> Upload website files and folders into bucket and give public read access
+-> Enable Static website hosting ( in the bucket properties section) index doc: index.html
+-> It will generate end-point url for our website after enabling static website hosting
+
+Versioning 
+===============
+--> Versioning is a means of keeping multiple variants of an object in the same bucket. You can use versioning to preserve, retrieve, and restore every version of every object stored in your Amazon S3 bucket. With versioning, you can easily recover from both unintended user actions and application failures.
+
+--> By default versioning is disabled for S3 bucket 
+  ( Whenever we add new same file again in bucket it will replace or override the old one and if you don't want to replace old object with new from bucket then we can go with Versioning )
+
+however we can enable in properties --> Bucket Versioning --> enable
+    ( Once Versioning is enabled then we cannot disable but we can suspend it )
+
+Storage Classes in S3
+======================
+--> Storage classes are used to specify how frequently to access the objects from S3
+
+we have diff types of storage classes 
+Standard
+Frequently accessed data (more than once a month) with milliseconds access
+General purpose
+≥ 3
+
+
+Intelligent-Tiering
+Data with changing or unknown access patterns
+General purpose
+≥ 3
+
+Standard-IA
+Infrequently accessed data (once a month) with milliseconds access
+General purpose
+≥ 3
+
+One Zone-IA
+Recreatable, infrequently accessed data (once a month) with milliseconds access
+General purpose or directory
+1
+
+Glacier Instant Retrieval
+Long-lived archive data accessed once a quarter with instant retrieval in milliseconds
+General purpose
+≥ 3
+
+Glacier Flexible Retrieval (formerly Glacier)
+Long-lived archive data accessed once a year with retrieval of minutes to hours
+General purpose
+≥ 3
+
+Glacier Deep Archive
+Long-lived archive data accessed less than once a year with retrieval of hours
+General purpose
+≥ 3
+
+Reduced redundancy
+Noncritical, frequently accessed data with milliseconds access (not recommended as S3 Standard is more cost effective)
+General purpose
+≥ 3
+
+------------------------------------------------
+
+Transfer acceleration
+==========================
+Use an accelerated endpoint for faster data transfers
+( Used to speed up data transfer process in S3 bucket)
+
+Object Lock
+===========
+
+==> Store objects using a write-once-read-many (WORM) model to help you prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely.
+ 
+==> Object Lock works only in versioned buckets.
 
 
 
