@@ -1,0 +1,234 @@
+Docker Notes
+=============
+Telusko --> DevOps with AWS Live course
+
+Instructor : Hyder Abbas
+
+19th Nov(Wednesday)
+
+Docker(Containerization) + K8S (Orchestration) + Jenkins (CICD)
+================================================================
+
+Application Architecture 
+=========================
+1) User Interface --> Frontend --> End user will use app through ui
+   (HTML CSS JS Angular, Reacts ....)
+
+
+2) Backend --> Business logic
+   (Java, Python, .NET, .....)
+
+3) Database : Store Data --> Storage
+   (MySQL, SQLServer, MongoDb, Oracle.....)
+
+Application Code --> Java, MySQL, Angular 16 --> Tomcat
+
+If we want to run our app code, then we must setup all required dependencies(Software which are required to run our application) in the machine
+Example : Java + MySQL + Angular + Tomcat Server
+
+Application Environments
+=======================
+DEV, SIT, UAT, PILOT, PROD
+
+Dev Env used by Developers for code integration testing
+
+SIT env used by Testers for System Integration testing
+
+UAT env used by client team for acceptance testing (Go or No Go)
+
+Pilot env is used for pre-production testing
+
+Prod env used for live deployment(end users can access our app)
+
+
+As a devOps engineer we are responsible to setup infrastructure to run our app  
+--> We need to setup dependencies in all the environments(DEV< SIT< UAT< PILOT< PROD) to run our application
+
+
+In this case there is a high chance of doing mistakes in dependencies installation process (Version compatibility issues can occur)
+
+
+Solution for the above problem could be solved in 2 ways
+==> Virtualization
+==> Containerization
+( Refer board work attached with diagrams and Live class recordings )
+
+==> To Simplify application execution in any machine we can go with Docker
+
+
+Docker 
+========
+==> Docker is a free and open source software/tool
+
+==> Used for Containerization  --> We can run our application in any machine
+
+==> Container ==> application code + application dependencies
+(Docker will take care of dependencies installation required for our app)
+==> It will make our app portable using Docker
+
+Docker Architecture
+===================
+=> Docker file -> used to specify where the app code and what dependencies are required for app execution
+( Docker file is required to build docker image )
+
+=> Docker Image => Package which contains code + dependencies
+A Docker image is like a blueprint (or template).
+
+It contains everything needed to run an application: the code, runtime, libraries, environment variables, and configuration files.
+ 
+=> Docker Registry ==> is used to store Docker Images
+  Docker Hub --> Cloud based registry provided by Docker to use pre built images and to share our images with others 
+
+=> Docker Container
+
+A Docker container is a running instance of a Docker image.
+
+Containers are lightweight, isolated environments that share the host OS kernel.
+
+=> Docker Daemon -> dockerd 
+The Docker daemon is the background process that makes Docker work.
+
+It listens for Docker commands (like docker run, docker build) and manages images, containers, networks, and volumes.
+
+Install Docker in Linux VM
+--------------------------
+--> Create EC2 VM and Connect to that VM using terminal ( SSH Client ) (Amazon Linux) (free  tier eligible)
+
+--> Execute following commands
+
+sudo yum update -y 
+# Update yum package manager and -y ==>  auto approve
+
+sudo yum install docker -y
+#install docker
+
+sudo systemctl start docker 
+sudo systemctl enable docker
+
+# Add ec2-user into docker group
+$ sudo usermod -aG docker ec2-user
+
+
+$ exit 
+# reconnect to same ec2-vm
+
+# Verify Docker installation 
+$ docker -v
+
+
+20th Nov (Thursday)
+
+Docker Commands
+===============
+
+$ docker images ==> It will display all the docker images 
+
+$ docker ps ==> It will display running docker containers
+
+$ docker ps -a ==> It will display running docker containers and stopped docker conatiners
+
+$ docker pull < image-id/image-name > ==> Get this from docker registry==> To download docker image 
+
+$ docker run <Image-id/Image-name> ==> To run docker image / To create docker conatiner
+
+$ docker rm <container-id> ==> To delete docker container
+
+$ docker rmi < image-id/image-name > ==> To delete docker image 
+
+$ docker stop < container-id> ==> To stop docker container
+
+$ docker start < container-d > ==> To start docker container
+
+note: docker container must be stopped and deleted before deleting docker image
+
+ex:
+
+docker pull hello-world
+
+$ docker images
+
+REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
+hello-world   latest    1b44b5a3e06a   2 weeks ago   10.1kB
+
+$ docker ps -a
+CONTAINER ID   IMAGE          COMMAND    CREATED          STATUS                      PORTS     NAMES
+7878d57f03d0   1b44b5a3e06a   "/hello"   34 seconds ago   Exited (0) 32 seconds ago             elastic_nash
+
+$ docker rm 7878d57f03d0
+
+
+
+$ docker ps -a
+
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+$ docker images
+
+REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
+hello-world   latest    1b44b5a3e06a   2 weeks ago   10.1kB
+
+$ docker rmi 1b44b5a3e06a
+
+
+$ docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+
+
+
+$ docker system prune -a ==> System clean up everything is deleted ( stopped containers, unused images ..)
+
+docker pull haidertelusko/springboot-app:latest
+
+or  
+
+$ docker pull hacker123shiva/springbt-in-docker:latest
+
+$docker run -d <image -d/name> ==> -d ==> represents detached mode
+
+run other commands in terminal while container is running
+
+$ docker run -d 3f98d4db2087
+
+$ docker logs <container-id> ==> To see logs of container and app
+
+$ docker logs 77d2a5404ec3
+
+--------------------------------------------
+
+
+docker pull haidertelusko/springboot-app:latest
+
+docker images
+
+
+Pot Mapping -p
+---------------
+docker run -d -p <hostportno>:<containerportno> nameofimage
+
+$ docker run -d -p 8484:8080 <image-id> or <image-name>
+
+By default, containers are isolated and run in their own network namespace.
+
+This means services inside a container (say an app running on port 8080) are not accessible from your host machine or external clients.
+
+To expose the service, you must map a container’s internal port to a port on the host machine.
+
+That’s what -p does in Docker.
+
+-p is used for port mapping between host and container.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

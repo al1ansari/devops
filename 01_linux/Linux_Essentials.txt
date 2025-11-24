@@ -96,11 +96,8 @@ After Linux was released as open source, many companies downloaded the source co
 🔹 Popular Linux Distros:
 
 -> CentOS(dnf/yum-package manager)
-
--> Ubuntu(apt-package manager)
-
 -> Amazon Linux(dnf/yum-package manager)
-
+-> Ubuntu(apt-package manager)
 -> Red Hat Enterprise Linux (RHEL)
 
 There are 200+ Linux Distributions available today
@@ -126,7 +123,7 @@ Text Filters
 Users Management
 File Permissions
 File Ownership
-Archieves 
+Archives 
 Networking
 sudoers file
 ssh_config
@@ -236,7 +233,7 @@ $ cat -n terraform.txt ==> It will display file content/data with numbering
 
 $ tac terraform.txt  ==> It will print/display content from bottom to top order
 
-$ rev terraform.txt ==> reverse each words of the line and display the content
+$ rev terraform.txt ==> reverse each line and words of the line and display the content
 
 Note: here terraform.txt or Jenkins.txt all of these are just file name example it could be any file name
 
@@ -374,12 +371,12 @@ aws is important for devops and cloud
 AWS is very popular
 aws is easy to learn if you're implementing
 
-$ grep -n 'aws' aws.txt  ==> It will print/display line of file aws.txt which as 'aws' in it along side number
+$ grep -n 'aws' aws.txt  ==> It will print/display line of file aws.txt which has 'aws' in it along side number
 
 2:aws is important for devops and cloud
 4:aws is easy to learn if you're implementing
 
-$ grep -n -i 'aws' aws.txt ==> It will print/display line of file aws.txt which as 'aws' in it along side number by ignoring case sensitivity
+$ grep -n -i 'aws' aws.txt ==> It will print/display line of file aws.txt which has 'aws' in it along side number by ignoring case sensitivity
 
 1:AWS classes will be right after Linux and Bash shell scripting
 2:aws is important for devops and cloud
@@ -432,8 +429,9 @@ $ wc k8s.txt
 22 -> number of words
 128 -> number of bytes/characters
 
-tac, cp ,mv , cat, tail, grep, wc, diff, head
+clear, mkdir, cd, pwd
 
+rm, ls, mv, cp, cat, tac, head, tail, grep, wc, diff
 =====================
 Text Editors in Linux
 =====================
@@ -624,22 +622,22 @@ uid=1003(Suraj) gid=1003(Suraj) groups=1003(Suraj)
 
 (Suraj is a new user account)
 
-==> Creating a new user group
-$ sudo groupadd <group-name>
-$ sudo groupadd telusko
-
-==> deleting a group
-$ sudo groupdel <groupname>
-$ sudo groupdel ali
-
 ==>Display current user's groups
 $ groups
 
 ==>List all the groups
 $ cat /etc/group
 
-==> Adding user to a group
+==> Creating a new user group
+$ sudo groupadd <group-name>
+$ sudo groupadd telusko
 
+==> deleting a user group
+$ sudo groupdel <groupname>
+$ sudo groupdel ali
+
+
+==> Adding user to a group
 $ sudo usermod -aG telusko Suraj  ==> adding Suraj to telusko user group
 
 ==> Displays users in a group
@@ -650,7 +648,7 @@ $ sudo lid -g telusko
 
 ==> Display user belong to which group 
 
- id Suraj
+$ id Suraj
 uid=1003(Suraj) gid=1003(Suraj) groups=1003(Suraj),1005(telusko)
 
 ==> Remove user from user group
@@ -689,7 +687,6 @@ To exit the sudoers file
 =============================================================================================================================================================================================================================================
 Day 08 - 25th SEP (Thursday)
 ==================================
-
 Enable password based authentication for the user
 ==================================================
 
@@ -834,7 +831,7 @@ locate ==> it is used to locate or find the location of directory or file in the
 
 It will search for the file or directories updated in locate db & not in entire file system unlike find command
 
-to update locatedb ==> sudo updated
+to update locatedb ==> sudo updatedb
 
 
 $ locate telusko
@@ -996,7 +993,7 @@ akshay Manager
 gaurav Manager
 ishan manager
 
-$ awk '{print NR, $0}' telusko.txt
+$ awk '{print NR, $0}' telusko.txt ==> $0 to print all the column, NR -> along side number
 
 1 Harsh is general manager
 2 sushil is content manager
@@ -1051,7 +1048,7 @@ $ ls -li
 
 telusko(original file) and teluskoai(link) will have same inode number
 
-Note : 1) If we add new content or update or modify the original file then it will reflect in link file also
+Note : 1) If we add new content or update or modify the original file then it will reflect in link file also and vice versa.
 
 2) If we delete the original file then it will have no impact/affect on link file
 
@@ -1227,10 +1224,10 @@ Kernel
 Shell
 Application
 
-Linux is CLI based free and open source OS which is highly secure.
+Linux is CLI based, free and open source OS which is highly secure.
 It is a multi user based OS
 
-Whenever we execute any Linux commands shell will read our commands and it translates commands into kernel understandable format
+Whenever we execute any Linux commands, shell will read our commands and it translates commands into kernel understandable format
 
 Shell is a mediator between user and kernel
 (Takes commands from the user , intercepts them, and passes them to the kernel for the execution)
@@ -1253,9 +1250,9 @@ Text filters
 users management
 file permissions
 file ownership
-archieves
+archives
 Networking
-sudoes file
+sudoers file
 ssh_config
 static website hosting (httpd)
 packagers
@@ -1265,7 +1262,7 @@ Linux architecture
 Shell Scripting ==> Bash Shell Scripting
 =================
 
-Set of commands in a file for execution is Scripting which will help us to automate our daily routine task
+Set of commands in a file for execution is called Scripting which will help us to automate our daily routine task
 
 The process of executing the script file using bash shell is called as bash shell scripting which is used to automate regular task in a project
 
@@ -1279,6 +1276,8 @@ cal
 
 To execute shell script
 $ sh telusko.sh
+	or
+$ ./telusko.sh
 
 =============================================================================================================================================================================================================================================
 
@@ -1730,10 +1729,13 @@ Crontab file
 ============
  Used to configure cronjobs execution
 
-$ crontab -e ==> It opens crontab file
+$ crontab -e ==> It opens your user's crontab file i default text editor, any lines we add become schedule jobs that the cron daemmon will run automatically at specifies times.
 
-$ crontab -l ==> display scheduled jobs
+$ crontab -l ==> list all your scheduled jobs
 
+$ crontab -r ==> remove your crontab (delete all jobs)
+
+$ sudo crontab -e ==> edit the root user's crontab
 
 ========================
 
