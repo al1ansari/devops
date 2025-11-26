@@ -218,7 +218,173 @@ That’s what -p does in Docker.
 -p is used for port mapping between host and container.
 
 
+24th Nov
+==================================
+Entering Ubuntu / Amazon Linux containers
 
+
+docker run -it
+
+docker run -it -d
+
+docker attach
+
+docker exec -it
+
+===========
+1. docker run -it ubuntu
+
+Starts a container from the Ubuntu image
+
+Opens a shell inside the container
+
+Terminal is occupied until you exit the container
+
+2. docker run -it -d --name=containername ubuntu 
+
+The container starts in background
+
+You get a container ID immediately
+
+Terminal remains free
+
+docker attach <container_id>
+Meaning:
+
+Attaches your terminal to the main process of a running container.
+
+3. docker exec -it <container_id> <command>
+Meaning:
+
+Executes a command inside a running container
+
+Does NOT depend on the main process
+
+Does NOT stop the container when you exit
+
+Use Case
+
+Safest way to open a shell inside a running container
+
+Ideal for debugging and administering running containers
+
+=========================================================
+
+Dockerfile
+===========
+
+Dockerfile contains instructions to build docker image
+
+(Used to specify where is application code and what dependencies are required + pre built images --> Blue print of docker image)
+
+
+==> The following keywords plays important role creating docker file
+
+
+FROM
+LABEL (MAINTAINER)
+WORKDIR
+COPY
+RUN
+CMD
+ENTRYPOINT
+EXPOSE
+USER
+COPY
+ADD
+
+FROM
+-----
+It is used to specify base image for our application
+
+FROM python:3.3
+FROM OpenJDK:17
+FROM tomcat:9.0
+FROM node:19.5
+FROM mysql:8.5
+
+MAINTAINER
+----------
+
+It is used to specify author of Dockerfile
+
+LABEL maintainer="Satyasheel <satyatelusko@telusko.com>"
+
+
+RUN
+----
+
+RUN keyword is used to specify instructions to execute at the time of image creation
+
+ex: RUN 'git clone<url>
+ RUN 'mvn clean package'
+
+If required we can write multiple RUN instructions in single Docker file and all those instructions will be processed in order
+
+
+CMD
+----
+CMD keyword is used to specify instructions to execute at the time of docker container creation
+
+ex: CMD 'java -jar app.jar'
+    CMD 'app.py'
+
+One Docker file can have multiple CMD instructions however docker will proceed only last CMD instruction
+
+example:  vi Dockerfile
+
+FROM ubuntu
+
+LABEL maintainer="Ramu ramu@telusko.com"
+
+RUN echo 'hello from telusko'
+
+RUN echo 'hello from haider'
+
+RUN echo 'hello from founder office harsh rawal'
+
+CMD echo 'hi from cmd1'
+
+CMD echo 'hi from cmd2'
+
+$ docker build -t alien .    ==> alien is name of image and . is present directory
+
+$ docker images
+
+$ docker run alien
+
+
+Dockerize simple static webapp
+=========================
+
+create index.html and add some static website
+
+example 2: vi Dockerfile
+
+FROM nginx:latest
+
+COPY index.html /usr/share/nginx/html/index.html
+
+EXPOSE 80
+
+
+:wq
+
+$ docker build -t <image-name> .
+
+$ docker run -d -p 8080:80 <image-name> 
+
+use public ip with port and access app externally
+
+
+
+Dockerize maven web app
+Dockerize SpringBoot mvn app
+Dockerize SpringBoot Gradleapp (REST API)
+Dockerize Python app
+Dockerize react app
+
+Single stage Dockerfile vs Multistage Dockerfile
 
 
 
